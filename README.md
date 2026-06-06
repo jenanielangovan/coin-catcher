@@ -124,4 +124,12 @@ introPage.addEventListener("scroll", () => {
 
 ---
 
+## ☕ Support This Project
+If you found this vanilla JS physics template helpful for your portfolio, consider supporting my work!
+
+[![Buy Me A Coffee](https://shields.io)](https://buymeacoffee.com)
+[![GitHub Sponsors](https://shields.io)](https://github.com)
+
+---
+
 Designed and developed with ❤️ by [Jenani Elangovan](https://github.com/jenanielangovan).

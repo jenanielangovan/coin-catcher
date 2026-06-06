@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800;900&display=swap" rel="stylesheet">
-    
+
     <style>
         /* === SYSTEM DESIGN SYSTEM === */
         * {
@@ -129,8 +129,15 @@
         }
 
         @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(10px); }
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(10px);
+            }
         }
 
         /* Coin Slide */
@@ -165,20 +172,34 @@
             align-items: center;
             font-size: 44px;
             color: #ffffff;
-            text-shadow: 0 2px 5px rgba(0,0,0,0.35);
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.35);
             animation: spinCoin 3s infinite linear;
             border: 4px solid #fff5b3;
             transform-style: preserve-3d;
         }
 
         @keyframes pulseRing {
-            0%, 100% { transform: scale(0.92); opacity: 0.4; }
-            50% { transform: scale(1.08); opacity: 1; }
+
+            0%,
+            100% {
+                transform: scale(0.92);
+                opacity: 0.4;
+            }
+
+            50% {
+                transform: scale(1.08);
+                opacity: 1;
+            }
         }
 
         @keyframes spinCoin {
-            0% { transform: rotateY(0deg); }
-            100% { transform: rotateY(360deg); }
+            0% {
+                transform: rotateY(0deg);
+            }
+
+            100% {
+                transform: rotateY(360deg);
+            }
         }
 
         .reveal-text {
@@ -234,15 +255,37 @@
         }
 
         @keyframes previewMove {
-            0%, 100% { left: 40px; }
-            50% { left: 80px; }
+
+            0%,
+            100% {
+                left: 40px;
+            }
+
+            50% {
+                left: 80px;
+            }
         }
 
         @keyframes previewFall {
-            0% { top: -20px; opacity: 0; }
-            20% { opacity: 1; }
-            65% { top: 110px; opacity: 1; }
-            75%, 100% { top: 110px; opacity: 0; }
+            0% {
+                top: -20px;
+                opacity: 0;
+            }
+
+            20% {
+                opacity: 1;
+            }
+
+            65% {
+                top: 110px;
+                opacity: 1;
+            }
+
+            75%,
+            100% {
+                top: 110px;
+                opacity: 0;
+            }
         }
 
         .enter-btn {
@@ -272,7 +315,8 @@
             width: 100%;
             height: 100%;
             display: block;
-            cursor: none; /* Hide default cursor inside game */
+            cursor: none;
+            /* Hide default cursor inside game */
         }
 
         /* Glassmorphic HUD Layer */
@@ -356,14 +400,14 @@
             outline: none;
             padding: 0;
         }
-        
+
         .hud-btn:hover {
             background: rgba(0, 243, 255, 0.15);
             border-color: #00f3ff;
             color: #00f3ff;
             box-shadow: 0 0 10px rgba(0, 243, 255, 0.3);
         }
-        
+
         .hud-btn:active {
             transform: scale(0.92);
         }
@@ -524,7 +568,7 @@
             border-color: rgba(255, 255, 255, 0.2);
             box-shadow: 0 5px 15px rgba(255, 255, 255, 0.05);
         }
-        
+
         .secondary-btn:active {
             transform: scale(0.98);
         }
@@ -572,6 +616,263 @@
             font-size: 22px;
             font-weight: 800;
         }
+
+        /* === MUSIC PLAYER WIDGET === */
+        #musicPlayer {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            width: 250px;
+            background: rgba(11, 12, 16, 0.82);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 15px rgba(0, 243, 255, 0.05);
+            z-index: 30;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            pointer-events: auto;
+        }
+
+        #musicPlayer.collapsed {
+            width: 46px;
+            height: 46px;
+            padding: 0;
+            border-radius: 50%;
+            overflow: hidden;
+            border-color: rgba(0, 243, 255, 0.3);
+            box-shadow: 0 4px 15px rgba(0, 243, 255, 0.2);
+            justify-content: center;
+            align-items: center;
+        }
+
+        #musicPlayer.collapsed .player-full {
+            display: none;
+        }
+
+        #musicPlayer.collapsed .player-compact {
+            display: flex;
+        }
+
+        .player-compact {
+            display: none;
+            width: 100%;
+            height: 100%;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .player-full {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        /* CD/Vinyl Art */
+        .cd-art {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #0f111a 25%, #00f3ff 35%, #0d0e15 45%, #ffd700 75%, #0d0e15 90%);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            flex-shrink: 0;
+        }
+
+        .cd-art::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 8px;
+            height: 8px;
+            background: #0b0c10;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .cd-spin {
+            animation: spin 3.5s linear infinite;
+        }
+
+        .cd-spin.paused {
+            animation-play-state: paused;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Song & Header Info */
+        .player-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            position: relative;
+        }
+
+        .song-details {
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            flex-grow: 1;
+        }
+
+        .song-title-wrap {
+            overflow: hidden;
+            white-space: nowrap;
+            width: 100%;
+            position: relative;
+        }
+
+        .song-title {
+            display: inline-block;
+            font-size: 13px;
+            font-weight: 800;
+            color: #ffffff;
+        }
+
+        .song-artist {
+            font-size: 10px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.5);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .collapse-btn {
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.4);
+            cursor: pointer;
+            padding: 4px;
+            font-size: 12px;
+            transition: color 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .collapse-btn:hover {
+            color: #00f3ff;
+        }
+
+        /* Controls Section */
+        .player-controls {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            margin-top: 4px;
+        }
+
+        .ctrl-btn {
+            background: none;
+            border: none;
+            color: #ffffff;
+            cursor: pointer;
+            font-size: 14px;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .ctrl-btn:hover {
+            background: rgba(0, 243, 255, 0.12);
+            color: #00f3ff;
+            text-shadow: 0 0 8px rgba(0, 243, 255, 0.5);
+        }
+
+        .ctrl-btn.play-pause {
+            background: rgba(0, 243, 255, 0.15);
+            border: 1px solid rgba(0, 243, 255, 0.3);
+            font-size: 12px;
+            color: #00f3ff;
+            box-shadow: 0 0 10px rgba(0, 243, 255, 0.2);
+            width: 32px;
+            height: 32px;
+        }
+
+        .ctrl-btn.play-pause:hover {
+            background: rgba(0, 243, 255, 0.25);
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.4);
+        }
+
+        /* Playlist Selector Dropdown */
+        .playlist-select {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: #ffffff;
+            border-radius: 8px;
+            padding: 5px 8px;
+            font-size: 10px;
+            font-weight: 800;
+            width: 100%;
+            outline: none;
+            cursor: pointer;
+            font-family: inherit;
+            letter-spacing: 1px;
+            transition: border-color 0.2s;
+        }
+
+        .playlist-select:focus,
+        .playlist-select:hover {
+            border-color: #00f3ff;
+            background: rgba(11, 12, 16, 0.95);
+        }
+
+        /* Volume & Progress Bar Row */
+        .player-slider-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 10px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .player-slider {
+            flex-grow: 1;
+            -webkit-appearance: none;
+            appearance: none;
+            background: rgba(255, 255, 255, 0.1);
+            height: 4px;
+            border-radius: 2px;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .player-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #00f3ff;
+            box-shadow: 0 0 5px #00f3ff;
+            transition: transform 0.1s;
+        }
+
+        .player-slider::-webkit-slider-thumb:hover {
+            transform: scale(1.3);
+        }
     </style>
 </head>
 
@@ -599,7 +900,8 @@
                     <div class="coin-3d">★</div>
                 </div>
                 <h2 class="reveal-text">THE FORTUNE FALLS</h2>
-                <p class="reveal-sub">Golden coins and cosmic gems descend from the void. Catch them to power up your matrix.</p>
+                <p class="reveal-sub">Golden coins and cosmic gems descend from the void. Catch them to power up your
+                    matrix.</p>
             </div>
         </div>
 
@@ -611,7 +913,8 @@
                     <div class="preview-brick"></div>
                 </div>
                 <h2 class="reveal-text">DODGE THE RED DEBRIS</h2>
-                <p class="reveal-sub">Bricks collide with fatal impact. One hit disrupts your integrity. Power up your shield to survive.</p>
+                <p class="reveal-sub">Bricks collide with fatal impact. One hit disrupts your integrity. Power up your
+                    shield to survive.</p>
             </div>
         </div>
 
@@ -660,17 +963,19 @@
         <div id="startScreen" class="overlay">
             <div class="overlay-content">
                 <h1 class="logo">COIN<br><span class="highlight">CATCHER</span></h1>
-                <p class="description">Catch falling coins, gems, and power-ups. Avoid dangerous bricks. Survive as long as you can!</p>
-                
+                <p class="description">Catch falling coins, gems, and power-ups. Avoid dangerous bricks. Survive as long
+                    as you can!</p>
+
                 <span class="difficulty-title">SELECT DIFFICULTY</span>
                 <div class="difficulty-selector">
                     <button class="diff-btn active" data-mult="1.0">EASY</button>
                     <button class="diff-btn" data-mult="1.4">MEDIUM</button>
                     <button class="diff-btn" data-mult="1.8">HARD</button>
                 </div>
-                
+
                 <button id="startBtn" class="action-btn">START GAME</button>
-                <button id="backToIntroBtn" class="secondary-btn" style="margin-top: 15px; width: 100%;">BACK TO INTRO</button>
+                <button id="backToIntroBtn" class="secondary-btn" style="margin-top: 15px; width: 100%;">BACK TO
+                    INTRO</button>
                 <p class="instructions-tip">Use A/D, Arrow Keys, or Drag/Touch paddle directly to slide.</p>
             </div>
         </div>
@@ -680,9 +985,10 @@
             <div class="overlay-content">
                 <h1 class="logo">GAME<br><span class="highlight">PAUSED</span></h1>
                 <p class="description">Your progress is preserved. Select an option to continue.</p>
-                
+
                 <button id="resumeBtn" class="action-btn" style="margin-bottom: 15px; width: 100%;">RESUME</button>
-                <button id="mainMenuBtn" class="secondary-btn" style="margin-bottom: 15px; width: 100%;">MAIN MENU</button>
+                <button id="mainMenuBtn" class="secondary-btn" style="margin-bottom: 15px; width: 100%;">MAIN
+                    MENU</button>
                 <button id="exitBtn" class="secondary-btn" style="width: 100%;">EXIT GAME</button>
             </div>
         </div>
@@ -705,6 +1011,55 @@
                 <button id="gameOverMainMenuBtn" class="secondary-btn" style="width: 100%;">MAIN MENU</button>
             </div>
         </div>
+
+        <!-- Floating Cyber Music Player -->
+        <div id="musicPlayer" class="collapsed">
+            <!-- Compact mode: click to expand -->
+            <div class="player-compact" id="playerExpandBtn">
+                <div class="cd-art cd-spin paused" id="compactCd"></div>
+            </div>
+
+            <!-- Full player mode -->
+            <div class="player-full">
+                <div class="player-header">
+                    <div class="cd-art cd-spin paused" id="fullCd"></div>
+                    <div class="song-details">
+                        <div class="song-title-wrap">
+                            <span class="song-title" id="trackTitle">Style</span>
+                        </div>
+                        <span class="song-artist" id="trackArtist">Taylor Swift Cover</span>
+                    </div>
+                    <button class="collapse-btn" id="playerCollapseBtn">▼</button>
+                </div>
+
+                <!-- Playlist Dropdown -->
+                <select class="playlist-select" id="playlistSelect">
+                    <option value="swift">✨ SWIFTIE SPACE HITS</option>
+                    <option value="kpop">🎵 CYBER POP HITS</option>
+                </select>
+
+                <!-- Player Controls -->
+                <div class="player-controls">
+                    <button class="ctrl-btn" id="prevBtn">⏮</button>
+                    <button class="ctrl-btn play-pause" id="playPauseBtn">▶</button>
+                    <button class="ctrl-btn" id="nextBtn">⏭</button>
+                    <button class="ctrl-btn" id="muteBtn">🔊</button>
+                </div>
+
+                <!-- Song Progress Slider (Song Pacer) -->
+                <div class="player-slider-row">
+                    <span id="timeCurrent" style="min-width: 24px;">0:00</span>
+                    <input type="range" class="player-slider" id="progressSlider" min="0" max="100" value="0">
+                    <span id="timeDuration" style="min-width: 24px; text-align: right;">0:00</span>
+                </div>
+
+                <!-- Volume slider -->
+                <div class="player-slider-row" style="margin-top: -2px;">
+                    <span style="min-width: 24px;">Vol</span>
+                    <input type="range" class="player-slider" id="volumeSlider" min="0" max="100" value="70">
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -712,17 +1067,17 @@
 
         const canvas = document.getElementById("gameCanvas");
         const ctx = canvas.getContext("2d");
-        
+
         // UI Elements
         const scoreValText = document.getElementById("scoreVal");
         const highValText = document.getElementById("highVal");
         const heartsContainer = document.getElementById("heartsContainer");
         const shieldOverlay = document.getElementById("shieldOverlay");
-        
+
         const startScreen = document.getElementById("startScreen");
         const startBtn = document.getElementById("startBtn");
         const backToIntroBtn = document.getElementById("backToIntroBtn");
-        
+
         const pauseScreen = document.getElementById("pauseScreen");
         const pauseBtn = document.getElementById("pauseBtn");
         const resumeBtn = document.getElementById("resumeBtn");
@@ -744,10 +1099,10 @@
         let isGameRunning = false;
         let isPaused = false;
         let gameLoopId;
-        
+
         let difficultyMultiplier = 1.0;
         let speedMultiplier = 1.0;
-        
+
         // Timers & Modifiers
         let shieldTimeLeft = 0; // Shield duration in frames (60fps ~ 360 frames = 6s)
         let shakeTime = 0; // Screen shake duration in frames
@@ -763,7 +1118,8 @@
             height: 16,
             speed: 9,
             dx: 0,
-            radius: 8 // Rounded borders
+            radius: 8, // Rounded borders
+            targetX: canvas.width / 2 - 40 // Track target pointer position
         };
 
         // Items and Particle Lists
@@ -799,26 +1155,61 @@
         });
 
         // Mouse & Touch control handlers
+        let mouseX = -100;
+        let mouseY = -100;
+        let isMouseOver = false;
+
         function handlePointerMove(clientX) {
             if (!isGameRunning || isGameOver || isPaused) return;
             const rect = canvas.getBoundingClientRect();
             // Map viewport position to canvas coordinates
             const relativeX = clientX - rect.left;
             const scaleX = relativeX / rect.width;
-            player.x = scaleX * canvas.width - player.width / 2;
-            keepPlayerInBounds();
+            player.targetX = scaleX * canvas.width - player.width / 2;
         }
 
         canvas.addEventListener("mousemove", (e) => {
+            const rect = canvas.getBoundingClientRect();
+            mouseX = (e.clientX - rect.left) * (canvas.width / rect.width);
+            mouseY = (e.clientY - rect.top) * (canvas.height / rect.height);
+            isMouseOver = true;
             handlePointerMove(e.clientX);
+
+            // Generate neon cursor trail particles in active gameplay
+            if (isGameRunning && !isGameOver && !isPaused) {
+                if (Math.random() < 0.25) {
+                    particles.push({
+                        x: mouseX,
+                        y: mouseY,
+                        vx: (Math.random() - 0.5) * 1.2,
+                        vy: (Math.random() - 0.5) * 1.2,
+                        size: Math.random() * 2 + 1,
+                        color: "rgba(0, 243, 255, 0.65)",
+                        alpha: 1.0,
+                        decay: Math.random() * 0.04 + 0.02
+                    });
+                }
+            }
         });
 
         canvas.addEventListener("touchmove", (e) => {
             if (e.touches.length > 0) {
+                const rect = canvas.getBoundingClientRect();
+                mouseX = (e.touches[0].clientX - rect.left) * (canvas.width / rect.width);
+                mouseY = (e.touches[0].clientY - rect.top) * (canvas.height / rect.height);
+                isMouseOver = true;
                 handlePointerMove(e.touches[0].clientX);
             }
             e.preventDefault(); // Prevent page dragging scroll
         }, { passive: false });
+
+        canvas.addEventListener("mouseleave", () => {
+            isMouseOver = false;
+        });
+
+        canvas.addEventListener("touchend", () => {
+            isMouseOver = false;
+        });
 
         function keepPlayerInBounds() {
             if (player.x < 0) {
@@ -831,18 +1222,26 @@
         // Toggle Pause screen state
         function togglePause() {
             if (!isGameRunning || isGameOver) return;
-            
+
             isPaused = !isPaused;
             if (isPaused) {
                 pauseScreen.style.display = "flex";
                 setTimeout(() => {
                     pauseScreen.style.opacity = 1;
                 }, 50);
+                // Lower volume when paused
+                if (audio && !audio.muted) {
+                    audio.volume = previousVolume * 0.25;
+                }
             } else {
                 pauseScreen.style.opacity = 0;
                 setTimeout(() => {
                     pauseScreen.style.display = "none";
                 }, 300);
+                // Restore volume when resumed
+                if (audio && !audio.muted) {
+                    audio.volume = previousVolume;
+                }
             }
         }
 
@@ -852,7 +1251,7 @@
             isPaused = false;
             isGameOver = false;
             cancelAnimationFrame(gameLoopId);
-            
+
             // Fade overlays
             pauseScreen.style.opacity = 0;
             gameOverScreen.style.opacity = 0;
@@ -864,7 +1263,7 @@
                     startScreen.style.opacity = 1;
                 }, 50);
             }, 300);
-            
+
             // Reset state values
             score = 0;
             scoreValText.innerText = 0;
@@ -872,7 +1271,7 @@
             updateHeartsUI();
             items = [];
             particles = [];
-            
+
             // Draw static first frame
             draw();
         }
@@ -926,16 +1325,16 @@
             // Spawn rate increases slightly with difficulty & current score
             const baseSpawnProb = 0.038 * difficultyMultiplier;
             const scoreMod = Math.min(0.015, score * 0.00005);
-            
+
             if (Math.random() < (baseSpawnProb + scoreMod)) {
                 const size = 22;
                 const x = Math.random() * (canvas.width - size - 20) + 10;
-                
+
                 // Determine item type probabilities
                 const rand = Math.random();
                 let type = "coin";
                 let speedScale = 1.0;
-                
+
                 if (rand < 0.65) {
                     type = "coin"; // Gold Coin
                 } else if (rand < 0.88) {
@@ -975,9 +1374,17 @@
             if (activeKeys["ArrowRight"] || activeKeys["d"] || activeKeys["D"]) {
                 player.x += player.speed;
                 keepPlayerInBounds();
+                player.targetX = player.x; // Sync target with keyboard input
             } else if (activeKeys["ArrowLeft"] || activeKeys["a"] || activeKeys["A"]) {
                 player.x -= player.speed;
                 keepPlayerInBounds();
+                player.targetX = player.x; // Sync target with keyboard input
+            } else {
+                // Smoothly ease player.x toward player.targetX
+                if (player.targetX !== undefined) {
+                    player.x += (player.targetX - player.x) * 0.25;
+                    keepPlayerInBounds();
+                }
             }
 
             // Update Shield Overlay state
@@ -1056,23 +1463,23 @@
                 score += 10;
                 scoreValText.innerText = score;
                 createBurst(centerX, centerY, "#ffd700", 10);
-            } 
+            }
             else if (item.type === "gem") {
                 score += 30;
                 scoreValText.innerText = score;
                 createBurst(centerX, centerY, "#bf55ec", 16);
-            } 
+            }
             else if (item.type === "shield") {
                 shieldTimeLeft = 360; // 6 seconds at 60fps
                 createBurst(centerX, centerY, "#00ffaa", 12);
-            } 
+            }
             else if (item.type === "heart") {
                 if (health < 3) {
                     health++;
                     updateHeartsUI();
                 }
                 createBurst(centerX, centerY, "#ff3860", 12);
-            } 
+            }
             else if (item.type === "brick") {
                 if (shieldTimeLeft > 0) {
                     // Absorbed by Shield
@@ -1083,7 +1490,7 @@
                     shakeTime = 14;
                     updateHeartsUI();
                     createBurst(centerX, centerY, "#ff3860", 18);
-                    
+
                     if (health <= 0) {
                         triggerGameOver();
                     }
@@ -1109,7 +1516,7 @@
             }
 
             // Clear Canvas with sleek gradient
-            const bgGradient = ctx.createRadialGradient(canvas.width/2, canvas.height/2, 50, canvas.width/2, canvas.height/2, canvas.height/1.2);
+            const bgGradient = ctx.createRadialGradient(canvas.width / 2, canvas.height / 2, 50, canvas.width / 2, canvas.height / 2, canvas.height / 1.2);
             bgGradient.addColorStop(0, "#121422");
             bgGradient.addColorStop(1, "#07080c");
             ctx.fillStyle = bgGradient;
@@ -1120,6 +1527,9 @@
             stars.forEach(star => {
                 ctx.fillRect(star.x, star.y, star.size, star.size);
             });
+
+            // Draw real-time music frequency spectrum
+            drawAudioVisualizer();
 
             // Draw Particles
             particles.forEach(p => {
@@ -1135,67 +1545,67 @@
             // Draw Falling Items
             items.forEach(item => {
                 ctx.save();
-                
+
                 if (item.type === "coin") {
                     // Glowing gold coin
                     ctx.shadowBlur = 8;
                     ctx.shadowColor = "#ffd700";
                     ctx.fillStyle = "#ffd700";
                     ctx.beginPath();
-                    ctx.arc(item.x + item.width/2, item.y + item.height/2, item.width/2, 0, Math.PI*2);
+                    ctx.arc(item.x + item.width / 2, item.y + item.height / 2, item.width / 2, 0, Math.PI * 2);
                     ctx.fill();
                     // Inner detail
                     ctx.shadowBlur = 0;
                     ctx.strokeStyle = "#e5c100";
                     ctx.lineWidth = 2;
                     ctx.beginPath();
-                    ctx.arc(item.x + item.width/2, item.y + item.height/2, item.width/3, 0, Math.PI*2);
+                    ctx.arc(item.x + item.width / 2, item.y + item.height / 2, item.width / 3, 0, Math.PI * 2);
                     ctx.stroke();
-                } 
+                }
                 else if (item.type === "gem") {
                     // Pulsing magenta diamond
                     const scale = 1 + Math.sin(item.pulse) * 0.1;
                     const rWidth = item.width * scale;
-                    const cx = item.x + item.width/2;
-                    const cy = item.y + item.height/2;
+                    const cx = item.x + item.width / 2;
+                    const cy = item.y + item.height / 2;
 
                     ctx.shadowBlur = 12;
                     ctx.shadowColor = "#bf55ec";
                     ctx.fillStyle = "#bf55ec";
                     ctx.beginPath();
-                    ctx.moveTo(cx, cy - rWidth/2); // Top
-                    ctx.lineTo(cx + rWidth/2, cy); // Right
-                    ctx.lineTo(cx, cy + rWidth/2); // Bottom
-                    ctx.lineTo(cx - rWidth/2, cy); // Left
+                    ctx.moveTo(cx, cy - rWidth / 2); // Top
+                    ctx.lineTo(cx + rWidth / 2, cy); // Right
+                    ctx.lineTo(cx, cy + rWidth / 2); // Bottom
+                    ctx.lineTo(cx - rWidth / 2, cy); // Left
                     ctx.closePath();
                     ctx.fill();
-                } 
+                }
                 else if (item.type === "shield") {
                     // Star (Cyan/Green powerup)
-                    const cx = item.x + item.width/2;
-                    const cy = item.y + item.height/2;
-                    
+                    const cx = item.x + item.width / 2;
+                    const cy = item.y + item.height / 2;
+
                     ctx.shadowBlur = 10;
                     ctx.shadowColor = "#00ffaa";
                     ctx.fillStyle = "#00ffaa";
-                    drawStar(ctx, cx, cy, 5, item.width/2, item.width/4.5);
-                } 
+                    drawStar(ctx, cx, cy, 5, item.width / 2, item.width / 4.5);
+                }
                 else if (item.type === "heart") {
                     // Heart icon
-                    const cx = item.x + item.width/2;
-                    const cy = item.y + item.height/2;
-                    
+                    const cx = item.x + item.width / 2;
+                    const cy = item.y + item.height / 2;
+
                     ctx.shadowBlur = 10;
                     ctx.shadowColor = "#ff3860";
                     ctx.fillStyle = "#ff3860";
                     drawHeart(ctx, cx, cy - 3, item.width * 1.1);
-                } 
+                }
                 else if (item.type === "brick") {
                     // Sleek metallic red block
                     ctx.shadowBlur = 4;
                     ctx.shadowColor = "rgba(255, 0, 0, 0.4)";
                     ctx.fillStyle = "#ff3860";
-                    
+
                     // Rounded border square
                     drawRoundedRect(ctx, item.x, item.y, item.width, item.height, 4);
                     ctx.fill();
@@ -1205,7 +1615,7 @@
                     ctx.lineWidth = 1.5;
                     ctx.strokeRect(item.x + 2, item.y + 2, item.width - 4, item.height - 4);
                 }
-                
+
                 ctx.restore();
             });
 
@@ -1236,14 +1646,47 @@
             ctx.fillStyle = shieldTimeLeft > 0 ? "#00ffaa" : "#00f3ff";
             ctx.beginPath();
             if (ctx.roundRect) {
-                ctx.roundRect(player.x + player.width/2 - 12, player.y + 5, 24, 6, 3);
+                ctx.roundRect(player.x + player.width / 2 - 12, player.y + 5, 24, 6, 3);
             } else {
-                ctx.rect(player.x + player.width/2 - 12, player.y + 5, 24, 6);
+                ctx.rect(player.x + player.width / 2 - 12, player.y + 5, 24, 6);
             }
             ctx.fill();
 
             ctx.restore();
             ctx.restore(); // Ends Screen Shake save
+
+            // Draw custom laser-sight styled cursor reticle
+            if (isMouseOver && mouseX >= 0 && mouseX <= canvas.width && mouseY >= 0 && mouseY <= canvas.height) {
+                ctx.save();
+                ctx.translate(mouseX, mouseY);
+
+                // Outer glowing reticle ring
+                ctx.shadowBlur = 8;
+                ctx.shadowColor = "#00f3ff";
+                ctx.strokeStyle = "rgba(0, 243, 255, 0.75)";
+                ctx.lineWidth = 1.5;
+                ctx.beginPath();
+                ctx.arc(0, 0, 7, 0, Math.PI * 2);
+                ctx.stroke();
+
+                // Core center dot
+                ctx.fillStyle = "#ffffff";
+                ctx.beginPath();
+                ctx.arc(0, 0, 2, 0, Math.PI * 2);
+                ctx.fill();
+
+                // Crosshair ticks
+                ctx.strokeStyle = "rgba(0, 243, 255, 0.4)";
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+                ctx.moveTo(0, -11); ctx.lineTo(0, -7);
+                ctx.moveTo(0, 7); ctx.lineTo(0, 11);
+                ctx.moveTo(-11, 0); ctx.lineTo(-7, 0);
+                ctx.moveTo(7, 0); ctx.lineTo(11, 0);
+                ctx.stroke();
+
+                ctx.restore();
+            }
         }
 
         // Draw Helper: 5-pointed Star
@@ -1279,11 +1722,11 @@
             ctx.moveTo(x, y + height / 4);
             ctx.quadraticCurveTo(x, y, x + width / 4, y);
             ctx.quadraticCurveTo(x + width / 2, y, x + width / 2, y + height / 4);
-            ctx.quadraticCurveTo(x + width / 2, y, x + width * 3/4, y);
+            ctx.quadraticCurveTo(x + width / 2, y, x + width * 3 / 4, y);
             ctx.quadraticCurveTo(x + width, y, x + width, y + height / 4);
-            ctx.quadraticCurveTo(x + width, y + height / 2, x + width * 3/4, y + height * 3/4);
+            ctx.quadraticCurveTo(x + width, y + height / 2, x + width * 3 / 4, y + height * 3 / 4);
             ctx.lineTo(x + width / 2, y + height);
-            ctx.lineTo(x + width / 4, y + height * 3/4);
+            ctx.lineTo(x + width / 4, y + height * 3 / 4);
             ctx.quadraticCurveTo(x, y + height / 2, x, y + height / 4);
             ctx.closePath();
             ctx.fill();
@@ -1329,16 +1772,17 @@
             items = [];
             particles = [];
             player.x = canvas.width / 2 - player.width / 2;
-            
+            player.targetX = player.x;
+
             // Sync UI values
             scoreValText.innerText = 0;
             updateHeartsUI();
-            
+
             // Fades menus
             startScreen.style.opacity = 0;
             gameOverScreen.style.opacity = 0;
             pauseScreen.style.opacity = 0;
-            
+
             setTimeout(() => {
                 startScreen.style.display = "none";
                 gameOverScreen.style.display = "none";
@@ -1346,7 +1790,7 @@
             }, 300);
 
             initStars();
-            
+
             // Start Loop
             cancelAnimationFrame(gameLoopId);
             gameLoopId = requestAnimationFrame(gameLoop);
@@ -1358,7 +1802,7 @@
             isGameRunning = false;
             isPaused = false;
             cancelAnimationFrame(gameLoopId);
-            
+
             // Set Stats UI
             finalScoreVal.innerText = score;
             finalHighScoreVal.innerText = highScore;
@@ -1387,7 +1831,7 @@
                     if (!content) return;
 
                     const absRatio = Math.abs(ratio);
-                    
+
                     // Smooth curve transitions
                     const opacity = Math.max(0, 1 - absRatio * 1.6);
                     const translateY = ratio * -100;
@@ -1426,7 +1870,7 @@
         // Listeners for Menu buttons
         startBtn.addEventListener("click", startGame);
         restartBtn.addEventListener("click", startGame);
-        
+
         pauseBtn.addEventListener("click", togglePause);
         resumeBtn.addEventListener("click", () => {
             isPaused = false;
@@ -1435,17 +1879,17 @@
                 pauseScreen.style.display = "none";
             }, 300);
         });
-        
+
         mainMenuBtn.addEventListener("click", goToMainMenu);
         gameOverMainMenuBtn.addEventListener("click", goToMainMenu);
         exitBtn.addEventListener("click", exitGame);
-        
+
         if (backToIntroBtn) {
             backToIntroBtn.addEventListener("click", () => {
                 // Show the intro page overlay again
                 introPage.style.display = "block";
                 introPage.scrollTop = 0; // Reset scroll to slide 1
-                
+
                 // Force transitions to update immediately
                 introPage.dispatchEvent(new Event("scroll"));
 
@@ -1461,7 +1905,372 @@
                 }, 300);
             });
         }
- 
+
+        // === CYBER ARCADE MUSIC PLAYER ENGINE === //
+
+        const playlists = {
+            swift: [
+                {
+                    title: "Cruel Summer",
+                    artist: "Taylor Swift",
+                    url: "https://archive.org/download/cloud0218popsongs2019/Taylor%20Swift%20-%20Cruel%20Summer.mp3"
+                },
+                {
+                    title: "Blank Space",
+                    artist: "Taylor Swift",
+                    url: "https://archive.org/download/fave2/Taylor%20Swift%20-%20Blank%20Space.mp3"
+                },
+                {
+                    title: "Love Story",
+                    artist: "Taylor Swift",
+                    url: "https://archive.org/download/JhePlalist/Love%20Story%20-%20Taylor%20Swift.mp3"
+                },
+                {
+                    title: "Shake It Off",
+                    artist: "Taylor Swift",
+                    url: "https://archive.org/download/RBHipHop/02%20Taylor%20Swift%20-%20Shake%20It%20Off.MP3"
+                },
+                {
+                    title: "Lover",
+                    artist: "Taylor Swift",
+                    url: "https://archive.org/download/cloud0218popsongs2019/Taylor%20Swift%20-%20Lover%20%28Lyrics%29.mp3"
+                },
+                {
+                    title: "You Need To Calm Down",
+                    artist: "Taylor Swift",
+                    url: "https://archive.org/download/cloud0218popsongs2019/Taylor%20Swift%20-%20You%20Need%20To%20Calm%20Down.mp3"
+                },
+                {
+                    title: "The Man",
+                    artist: "Taylor Swift",
+                    url: "https://archive.org/download/cloud0218popsongs2019/Taylor%20Swift%20-%20The%20Man.mp3"
+                },
+                {
+                    title: "ME!",
+                    artist: "Taylor Swift ft. Brendon Urie",
+                    url: "https://archive.org/download/cloud0218popsongs2019/Taylor%20Swift%20-%20ME%21.mp3"
+                },
+                {
+                    title: "Paper Rings",
+                    artist: "Taylor Swift",
+                    url: "https://archive.org/download/cloud0218popsongs2019/Taylor%20Swift%20-%20Paper%20Rings.mp3"
+                }
+            ],
+            kpop: [
+                {
+                    title: "Begin",
+                    artist: "Jungkook Solo",
+                    url: "https://archive.org/download/Bangtan/03.%20Jungkook%20-%20Begin.mp3"
+                },
+                {
+                    title: "Sorry",
+                    artist: "Justin Bieber",
+                    url: "https://archive.org/download/AlsPlaylistMixedGenre/Justin%20Bieber%20-%20Sorry.mp3"
+                },
+                {
+                    title: "Let Me Love You",
+                    artist: "DJ Snake ft. Justin Bieber",
+                    url: "https://archive.org/download/AlsPlaylistMixedGenre/DJ%20Snake%20%26%20Justin%20Bieber%20-%20Let%20me%20love%20you.mp3"
+                },
+                {
+                    title: "Love Yourself",
+                    artist: "Justin Bieber",
+                    url: "https://archive.org/download/AlsPlaylistMixedGenre/Justin%20Bieber%20-%20Love%20Yourself.mp3"
+                },
+                {
+                    title: "Blood Sweat & Tears",
+                    artist: "BTS",
+                    url: "https://archive.org/download/Bangtan/02.%20Blood%20Sweat%20Tears.mp3"
+                },
+                {
+                    title: "Butterfly",
+                    artist: "BTS",
+                    url: "https://archive.org/download/Bangtan/BTS%20-%20Butterfly.mp3"
+                }
+            ]
+        };
+
+        let currentPlaylistKey = "swift";
+        let currentTrackIndex = 0;
+        let isMuted = false;
+        let previousVolume = 0.7;
+
+        // Create standard Audio element with CORS support
+        const audio = new Audio();
+        audio.crossOrigin = "anonymous";
+        audio.volume = previousVolume;
+
+        // Web Audio variables for visualizer
+        let audioCtx = null;
+        let analyser = null;
+        let sourceNode = null;
+        let dataArray = null;
+        let isAudioContextInitialized = false;
+
+        // UI Selectors
+        const playerWidget = document.getElementById("musicPlayer");
+        const playerExpandBtn = document.getElementById("playerExpandBtn");
+        const playerCollapseBtn = document.getElementById("playerCollapseBtn");
+
+        const trackTitle = document.getElementById("trackTitle");
+        const trackArtist = document.getElementById("trackArtist");
+        const playlistSelect = document.getElementById("playlistSelect");
+
+        const prevBtn = document.getElementById("prevBtn");
+        const playPauseBtn = document.getElementById("playPauseBtn");
+        const nextBtn = document.getElementById("nextBtn");
+        const muteBtn = document.getElementById("muteBtn");
+        const volumeSlider = document.getElementById("volumeSlider");
+
+        const progressSlider = document.getElementById("progressSlider");
+        const timeCurrentText = document.getElementById("timeCurrent");
+        const timeDurationText = document.getElementById("timeDuration");
+
+        const compactCd = document.getElementById("compactCd");
+        const fullCd = document.getElementById("fullCd");
+
+        // Stops propagation on user interactions to prevent paddle move triggers
+        ["mousemove", "touchmove", "mousedown", "touchstart", "click"].forEach(evtName => {
+            playerWidget.addEventListener(evtName, (e) => {
+                e.stopPropagation();
+            }, { passive: true });
+        });
+
+        // Toggle Expand / Collapse
+        playerExpandBtn.addEventListener("click", () => {
+            playerWidget.classList.remove("collapsed");
+        });
+
+        playerCollapseBtn.addEventListener("click", () => {
+            playerWidget.classList.add("collapsed");
+        });
+
+        function initAudioContext() {
+            if (isAudioContextInitialized) return;
+            try {
+                const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+                audioCtx = new AudioContextClass();
+                analyser = audioCtx.createAnalyser();
+                analyser.fftSize = 64; // Small spectrum layout
+
+                sourceNode = audioCtx.createMediaElementSource(audio);
+                sourceNode.connect(analyser);
+                analyser.connect(audioCtx.destination);
+
+                const bufferLength = analyser.frequencyBinCount;
+                dataArray = new Uint8Array(bufferLength);
+                isAudioContextInitialized = true;
+            } catch (err) {
+                console.warn("Failed to initialize Web Audio API due to CORS or security profiles:", err);
+            }
+        }
+
+        function resumeAudioContext() {
+            if (audioCtx && audioCtx.state === "suspended") {
+                audioCtx.resume();
+            }
+        }
+
+        function loadTrack(playlistKey, index) {
+            const track = playlists[playlistKey][index];
+            audio.src = track.url;
+            trackTitle.innerText = track.title;
+            trackArtist.innerText = track.artist;
+            trackTitle.style.transform = 'translateX(0px)';
+
+            // Reset seek progress bar UI
+            progressSlider.value = 0;
+            timeCurrentText.innerText = "0:00";
+            timeDurationText.innerText = "0:00";
+        }
+
+        function playMusic() {
+            initAudioContext();
+            resumeAudioContext();
+
+            audio.play().then(() => {
+                playPauseBtn.innerText = "⏸";
+                compactCd.classList.remove("paused");
+                fullCd.classList.remove("paused");
+            }).catch(err => {
+                console.log("Audio playback blocked/waiting for user interaction:", err);
+            });
+        }
+
+        function pauseMusic() {
+            audio.pause();
+            playPauseBtn.innerText = "▶";
+            compactCd.classList.add("paused");
+            fullCd.classList.add("paused");
+        }
+
+        function togglePlay() {
+            if (audio.paused) {
+                playMusic();
+            } else {
+                pauseMusic();
+            }
+        }
+
+        playPauseBtn.addEventListener("click", togglePlay);
+
+        prevBtn.addEventListener("click", () => {
+            currentTrackIndex--;
+            if (currentTrackIndex < 0) {
+                currentTrackIndex = playlists[currentPlaylistKey].length - 1;
+            }
+            loadTrack(currentPlaylistKey, currentTrackIndex);
+            playMusic();
+        });
+
+        nextBtn.addEventListener("click", () => {
+            currentTrackIndex++;
+            if (currentTrackIndex >= playlists[currentPlaylistKey].length) {
+                currentTrackIndex = 0;
+            }
+            loadTrack(currentPlaylistKey, currentTrackIndex);
+            playMusic();
+        });
+
+        // Trigger next song automatically
+        audio.addEventListener("ended", () => {
+            nextBtn.click();
+        });
+
+        playlistSelect.addEventListener("change", (e) => {
+            currentPlaylistKey = e.target.value;
+            currentTrackIndex = 0;
+            loadTrack(currentPlaylistKey, currentTrackIndex);
+            playMusic();
+        });
+
+        volumeSlider.addEventListener("input", (e) => {
+            const val = e.target.value / 100;
+            audio.volume = val;
+            if (val === 0) {
+                audio.muted = true;
+                muteBtn.innerText = "🔇";
+            } else {
+                audio.muted = false;
+                isMuted = false;
+                muteBtn.innerText = "🔊";
+                previousVolume = val;
+            }
+        });
+
+        muteBtn.addEventListener("click", () => {
+            isMuted = !isMuted;
+            audio.muted = isMuted;
+            if (isMuted) {
+                muteBtn.innerText = "🔇";
+                volumeSlider.value = 0;
+            } else {
+                muteBtn.innerText = "🔊";
+                volumeSlider.value = Math.round(previousVolume * 100);
+                audio.volume = previousVolume;
+            }
+        });
+
+        // === SONG PACER / PROGRESS SLIDER LOGIC === //
+        let isDraggingProgress = false;
+
+        function formatTime(secs) {
+            if (isNaN(secs) || !isFinite(secs)) return "0:00";
+            const m = Math.floor(secs / 60);
+            const s = Math.floor(secs % 60);
+            return `${m}:${s < 10 ? '0' : ''}${s}`;
+        }
+
+        audio.addEventListener("loadedmetadata", () => {
+            timeDurationText.innerText = formatTime(audio.duration);
+            progressSlider.max = Math.floor(audio.duration) || 100;
+            progressSlider.value = Math.floor(audio.currentTime);
+        });
+
+        audio.addEventListener("timeupdate", () => {
+            if (!isDraggingProgress && audio.duration) {
+                progressSlider.value = Math.floor(audio.currentTime);
+                timeCurrentText.innerText = formatTime(audio.currentTime);
+                timeDurationText.innerText = formatTime(audio.duration);
+            }
+        });
+
+        progressSlider.addEventListener("input", () => {
+            isDraggingProgress = true;
+            timeCurrentText.innerText = formatTime(progressSlider.value);
+        });
+
+        progressSlider.addEventListener("change", () => {
+            audio.currentTime = progressSlider.value;
+            isDraggingProgress = false;
+        });
+
+        // Render real-time or simulated frequency spectrum
+        function drawAudioVisualizer() {
+            const barCount = 28;
+            let frequencies = [];
+
+            if (isAudioContextInitialized && analyser && !audio.paused) {
+                analyser.getByteFrequencyData(dataArray);
+                const step = Math.floor(dataArray.length / barCount);
+                for (let i = 0; i < barCount; i++) {
+                    frequencies.push(dataArray[i * step] || 0);
+                }
+            } else {
+                // Fallback simulation mode
+                const time = Date.now() * 0.0035;
+                for (let i = 0; i < barCount; i++) {
+                    let val = 0;
+                    if (!audio.paused) {
+                        val = Math.sin(time + i * 0.3) * 40 + 45;
+                        val += Math.cos(time * 2.1 - i * 0.6) * 15;
+                    } else {
+                        // Slow static waves when paused
+                        val = Math.sin(time * 0.5 + i * 0.12) * 8 + 10;
+                    }
+                    frequencies.push(Math.max(5, val));
+                }
+            }
+
+            const barWidth = canvas.width / barCount;
+            ctx.save();
+            ctx.shadowBlur = 8;
+            ctx.shadowColor = "rgba(0, 243, 255, 0.4)";
+
+            for (let i = 0; i < barCount; i++) {
+                const val = frequencies[i];
+                // Max height 150px
+                const barHeight = (val / 255) * 140;
+
+                const grad = ctx.createLinearGradient(0, canvas.height, 0, canvas.height - barHeight);
+                grad.addColorStop(0, "rgba(0, 243, 255, 0.02)");
+                grad.addColorStop(0.5, "rgba(0, 243, 255, 0.12)");
+                grad.addColorStop(1, "rgba(0, 243, 255, 0.28)");
+
+                ctx.fillStyle = grad;
+                ctx.fillRect(i * barWidth + 1, canvas.height - barHeight, barWidth - 2, barHeight);
+
+                // Cap
+                ctx.fillStyle = "rgba(0, 243, 255, 0.75)";
+                ctx.fillRect(i * barWidth + 1, canvas.height - barHeight - 2, barWidth - 2, 2);
+            }
+            ctx.restore();
+        }
+
+        // Initialize the music player
+        loadTrack(currentPlaylistKey, currentTrackIndex);
+
+        // Auto-play / setup triggers when entering the grid
+        if (enterGameBtn) {
+            enterGameBtn.addEventListener("click", () => {
+                // Expanding the player automatically when starting
+                setTimeout(() => {
+                    playerWidget.classList.remove("collapsed");
+                }, 600);
+                playMusic();
+            });
+        }
+
         // Pre-rendering first frame
         draw();
 
