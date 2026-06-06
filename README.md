@@ -124,4 +124,4 @@ introPage.addEventListener("scroll", () => {
 
 ---
 
-Designed and developed with ❤️ by [Jenanie Langovan](https://github.com/jenanielangovan).
+Designed and developed with ❤️ by [Jenani Elangovan](https://github.com/jenanielangovan).
