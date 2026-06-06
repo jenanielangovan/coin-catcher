@@ -1,0 +1,17 @@
+# Windows/macOS/Linux system files
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# IDEs and Editors
+.idea/
+.project
+.classpath
+.settings/
+*.sublime-project
+*.sublime-workspace
+
+# Local environment variables
+.env
+.env.local
+.env.*.local
