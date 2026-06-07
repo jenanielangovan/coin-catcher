@@ -873,6 +873,399 @@
         .player-slider::-webkit-slider-thumb:hover {
             transform: scale(1.3);
         }
+
+        /* ============================================================
+           MULTIPLAYER STYLES
+        ============================================================ */
+
+        /* Mode Toggle Tabs */
+        .mode-toggle {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 20px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 30px;
+            padding: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.07);
+        }
+
+        .mode-tab {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: rgba(255, 255, 255, 0.45);
+            padding: 10px 0;
+            border-radius: 25px;
+            font-size: 12px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.25s;
+            outline: none;
+            letter-spacing: 1px;
+            font-family: inherit;
+        }
+
+        .mode-tab.active {
+            background: linear-gradient(135deg, #00f3ff 0%, #0072ff 100%);
+            color: #ffffff;
+            box-shadow: 0 4px 15px rgba(0, 243, 255, 0.35);
+        }
+
+        .mode-tab:not(.active):hover {
+            background: rgba(255, 255, 255, 0.07);
+            color: #ffffff;
+        }
+
+        /* MP or-divider in start screen */
+        .mp-or-divider {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+            color: rgba(255, 255, 255, 0.2);
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+
+        .mp-or-divider::before,
+        .mp-or-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        /* Join code input on start screen */
+        .join-code-row {
+            display: flex;
+            gap: 8px;
+            width: 100%;
+            align-items: center;
+        }
+
+        .join-code-input {
+            flex-grow: 1;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: #ffffff;
+            border-radius: 10px;
+            padding: 10px 14px;
+            font-size: 14px;
+            font-weight: 800;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            outline: none;
+            font-family: inherit;
+            text-align: center;
+            transition: border-color 0.2s;
+        }
+
+        .join-code-input:focus {
+            border-color: rgba(0, 243, 255, 0.4);
+        }
+
+        .join-code-input::placeholder {
+            letter-spacing: 1px;
+            font-weight: 600;
+            text-transform: none;
+            color: rgba(255, 255, 255, 0.22);
+        }
+
+        /* Lobby Screen */
+        .lobby-header {
+            text-align: center;
+            margin-bottom: 18px;
+        }
+
+        .lobby-code-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(0, 243, 255, 0.07);
+            border: 1px solid rgba(0, 243, 255, 0.25);
+            border-radius: 30px;
+            padding: 6px 20px;
+            font-size: 12px;
+            font-weight: 800;
+            color: rgba(255, 255, 255, 0.5);
+            letter-spacing: 2px;
+        }
+
+        .lobby-code-badge span {
+            color: #00f3ff;
+            font-size: 19px;
+            letter-spacing: 5px;
+            text-shadow: 0 0 12px rgba(0, 243, 255, 0.65);
+        }
+
+        /* Player Slots */
+        .player-slots {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            width: 100%;
+            margin-bottom: 16px;
+        }
+
+        .player-slot {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 14px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            background: rgba(255, 255, 255, 0.03);
+            transition: all 0.2s;
+            min-height: 54px;
+        }
+
+        .player-slot.filled {
+            border-color: rgba(0, 243, 255, 0.2);
+            background: rgba(0, 243, 255, 0.05);
+        }
+
+        .player-slot.empty {
+            border-style: dashed;
+            border-color: rgba(255, 255, 255, 0.08);
+            justify-content: center;
+        }
+
+        .player-slot-avatar {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #00f3ff, #0072ff);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 800;
+            flex-shrink: 0;
+            color: #fff;
+        }
+
+        .player-slot-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .player-slot-name {
+            font-size: 13px;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        .player-slot-status {
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .player-slot-status.ready { color: #00ffaa; }
+        .player-slot-status.waiting { color: rgba(255, 255, 255, 0.35); }
+
+        .player-slot-empty-text {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.18);
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        /* Invite Section */
+        .invite-section {
+            width: 100%;
+            margin-bottom: 14px;
+        }
+
+        .invite-link-row {
+            display: flex;
+            gap: 6px;
+            align-items: center;
+            width: 100%;
+        }
+
+        .invite-link-input {
+            flex-grow: 1;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+            border-radius: 10px;
+            padding: 9px 12px;
+            font-size: 11px;
+            outline: none;
+            font-family: monospace;
+            min-width: 0;
+            letter-spacing: 0.3px;
+            cursor: text;
+        }
+
+        .invite-btn {
+            background: rgba(0, 243, 255, 0.09);
+            border: 1px solid rgba(0, 243, 255, 0.28);
+            color: #00f3ff;
+            border-radius: 10px;
+            padding: 9px 12px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+            outline: none;
+            white-space: nowrap;
+            flex-shrink: 0;
+            font-family: inherit;
+            font-weight: 800;
+        }
+
+        .invite-btn:hover {
+            background: rgba(0, 243, 255, 0.2);
+            box-shadow: 0 0 12px rgba(0, 243, 255, 0.3);
+        }
+
+        .lobby-start-btn:disabled { cursor: not-allowed; }
+
+        .ready-active {
+            background: rgba(0, 255, 170, 0.1) !important;
+            border-color: #00ffaa !important;
+            color: #00ffaa !important;
+        }
+
+        /* Mini Scoreboard (In-Game) */
+        #mpScoreboard {
+            position: absolute;
+            top: 70px;
+            right: 12px;
+            background: rgba(11, 12, 16, 0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 10px 12px;
+            z-index: 15;
+            min-width: 130px;
+            pointer-events: none;
+        }
+
+        .mp-scoreboard-header {
+            font-size: 9px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: rgba(255, 255, 255, 0.3);
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        .mp-score-row {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 3px 0;
+            font-size: 11px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .mp-score-row:last-child { border-bottom: none; }
+        .mp-score-row.mp-score-me { color: #00f3ff; }
+
+        .mp-score-rank {
+            font-size: 9px;
+            color: rgba(255, 255, 255, 0.35);
+            min-width: 14px;
+        }
+
+        .mp-score-name {
+            flex-grow: 1;
+            font-weight: 700;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 60px;
+        }
+
+        .mp-score-val {
+            font-weight: 800;
+            font-variant-numeric: tabular-nums;
+            color: #ffd700;
+            text-shadow: 0 0 6px rgba(255, 215, 0, 0.45);
+        }
+
+        /* MP Results / Leaderboard */
+        .leaderboard-list {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .leaderboard-entry {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .leaderboard-entry.leaderboard-winner {
+            background: rgba(255, 215, 0, 0.08);
+            border-color: rgba(255, 215, 0, 0.3);
+        }
+
+        .leaderboard-entry.leaderboard-me {
+            border-color: rgba(0, 243, 255, 0.25);
+            background: rgba(0, 243, 255, 0.05);
+        }
+
+        .lb-medal {
+            font-size: 22px;
+            min-width: 28px;
+            text-align: center;
+        }
+
+        .lb-name {
+            flex-grow: 1;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .lb-score {
+            font-size: 20px;
+            font-weight: 800;
+            color: #ffd700;
+            text-shadow: 0 0 8px rgba(255, 215, 0, 0.45);
+            font-variant-numeric: tabular-nums;
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: absolute;
+            bottom: 85px;
+            left: 50%;
+            transform: translateX(-50%) translateY(16px);
+            background: rgba(10, 11, 16, 0.9);
+            border: 1px solid rgba(0, 243, 255, 0.3);
+            color: #ffffff;
+            padding: 10px 22px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.4px;
+            opacity: 0;
+            transition: opacity 0.28s, transform 0.28s;
+            pointer-events: none;
+            z-index: 50;
+            white-space: nowrap;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0px);
+        }
     </style>
 </head>
 
@@ -966,14 +1359,34 @@
                 <p class="description">Catch falling coins, gems, and power-ups. Avoid dangerous bricks. Survive as long
                     as you can!</p>
 
-                <span class="difficulty-title">SELECT DIFFICULTY</span>
-                <div class="difficulty-selector">
-                    <button class="diff-btn active" data-mult="1.0">EASY</button>
-                    <button class="diff-btn" data-mult="1.4">MEDIUM</button>
-                    <button class="diff-btn" data-mult="1.8">HARD</button>
+                <!-- Mode Toggle Tabs -->
+                <div class="mode-toggle">
+                    <button id="modeTabSolo" class="mode-tab active">🎮 SOLO</button>
+                    <button id="modeTabMulti" class="mode-tab">👥 MULTIPLAYER</button>
                 </div>
 
-                <button id="startBtn" class="action-btn">START GAME</button>
+                <!-- Solo Section -->
+                <div id="soloSection" style="display: flex; flex-direction: column; align-items: center; width: 100%;">
+                    <span class="difficulty-title">SELECT DIFFICULTY</span>
+                    <div class="difficulty-selector">
+                        <button class="diff-btn active" data-mult="1.0">EASY</button>
+                        <button class="diff-btn" data-mult="1.4">MEDIUM</button>
+                        <button class="diff-btn" data-mult="1.8">HARD</button>
+                    </div>
+                    <button id="startBtn" class="action-btn">START GAME</button>
+                </div>
+
+                <!-- Multiplayer Section -->
+                <div id="multiSection" style="display: none; flex-direction: column; align-items: center; width: 100%; gap: 12px;">
+                    <button id="createLobbyBtn" class="action-btn" style="width: 100%;">🚀 CREATE LOBBY</button>
+                    <div class="mp-or-divider">OR JOIN WITH CODE</div>
+                    <div class="join-code-row">
+                        <input type="text" id="joinCodeInput" class="join-code-input" placeholder="Enter code..." maxlength="6" autocomplete="off" spellcheck="false">
+                        <button id="joinCodeBtn" class="invite-btn" style="padding: 10px 16px; font-size: 13px; letter-spacing: 1px;">JOIN</button>
+                    </div>
+                    <p class="instructions-tip" style="margin: 0;">Create a lobby &amp; share the invite link, or enter a 6-character code to join a friend's lobby.</p>
+                </div>
+
                 <button id="backToIntroBtn" class="secondary-btn" style="margin-top: 15px; width: 100%;">BACK TO
                     INTRO</button>
                 <p class="instructions-tip">Use A/D, Arrow Keys, or Drag/Touch paddle directly to slide.</p>
@@ -1011,6 +1424,62 @@
                 <button id="gameOverMainMenuBtn" class="secondary-btn" style="width: 100%;">MAIN MENU</button>
             </div>
         </div>
+
+        <!-- ============================================================
+             MULTIPLAYER OVERLAYS
+        ============================================================ -->
+
+        <!-- Multiplayer Lobby Screen -->
+        <div id="lobbyScreen" class="overlay" style="display: none; opacity: 0;">
+            <div class="overlay-content" style="max-width: 400px; width: 90%;">
+
+                <div class="lobby-header">
+                    <h1 class="logo" style="font-size: 30px; margin-bottom: 12px;">LOBBY</h1>
+                    <div class="lobby-code-badge">CODE:&nbsp;<span id="lobbyCodeText">------</span></div>
+                </div>
+
+                <!-- Player Slots (2–4) -->
+                <div id="playerSlots" class="player-slots"></div>
+
+                <!-- Invite Link Row -->
+                <div class="invite-section">
+                    <div class="invite-link-row">
+                        <input type="text" id="inviteLinkInput" class="invite-link-input" readonly placeholder="Generating invite link...">
+                        <button id="copyLinkBtn" class="invite-btn" title="Copy invite link">📋</button>
+                        <button id="shareLinkBtn" class="invite-btn" title="Share invite">📤</button>
+                    </div>
+                </div>
+
+                <!-- Lobby Actions -->
+                <div style="width: 100%; display: flex; flex-direction: column; gap: 10px;">
+                    <button id="startMpBtn" class="action-btn lobby-start-btn" style="width: 100%;" disabled>
+                        START GAME&nbsp;<span id="playerCountLabel">(1/2 min)</span>
+                    </button>
+                    <button id="readyBtn" class="secondary-btn" style="width: 100%; display: none;">READY</button>
+                    <button id="leaveLobbyBtn" class="secondary-btn" style="width: 100%;">LEAVE LOBBY</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Multiplayer Results / Leaderboard -->
+        <div id="mpResultsScreen" class="overlay" style="display: none; opacity: 0;">
+            <div class="overlay-content">
+                <h1 style="font-size: 40px; font-weight: 900; color: #ffd700; text-shadow: 0 0 25px rgba(255,215,0,0.5); margin: 0 0 6px; letter-spacing: 3px;">RESULTS</h1>
+                <p style="color: rgba(255,255,255,0.4); font-size: 12px; margin: 0 0 22px; font-weight: 700; letter-spacing: 2px;">FINAL LEADERBOARD</p>
+                <div id="leaderboardList" class="leaderboard-list"></div>
+                <button id="mpPlayAgainBtn" class="action-btn" style="width: 100%; margin-top: 22px; margin-bottom: 12px;">PLAY AGAIN</button>
+                <button id="mpMainMenuBtn" class="secondary-btn" style="width: 100%;">MAIN MENU</button>
+            </div>
+        </div>
+
+        <!-- Mini Scoreboard (Multiplayer In-Game HUD) -->
+        <div id="mpScoreboard" style="display: none;">
+            <div class="mp-scoreboard-header">PLAYERS</div>
+            <div id="mpScoreboardList"></div>
+        </div>
+
+        <!-- Toast Notification -->
+        <div id="toast" class="toast"></div>
 
         <!-- Floating Cyber Music Player -->
         <div id="musicPlayer" class="collapsed">
@@ -1807,6 +2276,12 @@
             finalScoreVal.innerText = score;
             finalHighScoreVal.innerText = highScore;
 
+            // Route through multiplayer game-over if in a live MP session
+            if (typeof mpGameActive !== 'undefined' && mpGameActive) {
+                triggerMpGameOver();
+                return;
+            }
+
             gameOverScreen.style.display = "flex";
             setTimeout(() => {
                 gameOverScreen.style.opacity = 1;
@@ -2273,6 +2748,506 @@
 
         // Pre-rendering first frame
         draw();
+
+        // ============================================================
+        // === MULTIPLAYER SYSTEM ===
+        // Lobby size: Min 2 / Max 4 players
+        // Features: Invite link, Share button, IsInstantMultiplayer
+        // Transport: BroadcastChannel API (same-device cross-tab sync)
+        // ============================================================
+
+        const LOBBY_MIN_PLAYERS = 2;
+        const LOBBY_MAX_PLAYERS = 4;
+
+        let isMultiplayerMode = false;
+        let isLobbyLeader = false;
+        let lobbyCode = null;
+        let myPlayerId = null;
+        let lobbyPlayers = [];
+        let mpChannel = null;
+        let isReady = false;
+        let mpGameActive = false;
+        let lastBroadcastScore = -1;
+
+        // === DOM References ===
+        const modeTabSolo    = document.getElementById('modeTabSolo');
+        const modeTabMulti   = document.getElementById('modeTabMulti');
+        const soloSection    = document.getElementById('soloSection');
+        const multiSection   = document.getElementById('multiSection');
+        const createLobbyBtn = document.getElementById('createLobbyBtn');
+        const joinCodeInput  = document.getElementById('joinCodeInput');
+        const joinCodeBtn    = document.getElementById('joinCodeBtn');
+        const lobbyScreen    = document.getElementById('lobbyScreen');
+        const lobbyCodeText  = document.getElementById('lobbyCodeText');
+        const playerSlotsEl  = document.getElementById('playerSlots');
+        const inviteLinkInput = document.getElementById('inviteLinkInput');
+        const copyLinkBtn    = document.getElementById('copyLinkBtn');
+        const shareLinkBtn   = document.getElementById('shareLinkBtn');
+        const startMpBtn     = document.getElementById('startMpBtn');
+        const readyBtn       = document.getElementById('readyBtn');
+        const leaveLobbyBtn  = document.getElementById('leaveLobbyBtn');
+        const playerCountLabel = document.getElementById('playerCountLabel');
+        const mpResultsScreen  = document.getElementById('mpResultsScreen');
+        const leaderboardList  = document.getElementById('leaderboardList');
+        const mpPlayAgainBtn   = document.getElementById('mpPlayAgainBtn');
+        const mpMainMenuBtn2   = document.getElementById('mpMainMenuBtn');
+        const mpScoreboard     = document.getElementById('mpScoreboard');
+        const mpScoreboardList = document.getElementById('mpScoreboardList');
+        const toastEl          = document.getElementById('toast');
+
+        // === UTILITY FUNCTIONS ===
+        function generateLobbyCode() {
+            const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+            let code = '';
+            for (let i = 0; i < 6; i++) code += chars[Math.floor(Math.random() * chars.length)];
+            return code;
+        }
+
+        function generatePlayerId() {
+            return 'P' + Math.random().toString(36).substr(2, 8).toUpperCase();
+        }
+
+        const PLAYER_NAMES = ['Nova', 'Flux', 'Zara', 'Orbit', 'Pixel', 'Cyan', 'Blaze', 'Echo', 'Vega', 'Lyra'];
+        function getPlayerName(id) {
+            const idx = ((id.charCodeAt(1) || 0) + (id.charCodeAt(2) || 0)) % PLAYER_NAMES.length;
+            return PLAYER_NAMES[idx];
+        }
+
+        function getInviteURL(code) {
+            if (window.location.protocol === 'file:') {
+                return 'https://jenanielangovan.github.io/coin-catcher/?lobby=' + code;
+            }
+            return window.location.href.split('?')[0] + '?lobby=' + code;
+        }
+
+        function showToast(message, duration) {
+            duration = duration || 2600;
+            toastEl.textContent = message;
+            toastEl.classList.add('show');
+            clearTimeout(toastEl._timer);
+            toastEl._timer = setTimeout(() => toastEl.classList.remove('show'), duration);
+        }
+
+        // === MODE TOGGLE ===
+        modeTabSolo.addEventListener('click', () => {
+            modeTabSolo.classList.add('active');
+            modeTabMulti.classList.remove('active');
+            soloSection.style.display = 'flex';
+            multiSection.style.display = 'none';
+            isMultiplayerMode = false;
+        });
+
+        modeTabMulti.addEventListener('click', () => {
+            modeTabMulti.classList.add('active');
+            modeTabSolo.classList.remove('active');
+            soloSection.style.display = 'none';
+            multiSection.style.display = 'flex';
+            isMultiplayerMode = true;
+        });
+
+        // === BROADCAST CHANNEL (same-device cross-tab communication) ===
+        function initChannel(code) {
+            if (mpChannel) { try { mpChannel.close(); } catch (e) {} }
+            mpChannel = new BroadcastChannel('coin_catcher_lobby_' + code);
+            mpChannel.onmessage = handleChannelMessage;
+        }
+
+        function handleChannelMessage(event) {
+            const msg = event.data;
+            if (!msg || msg.lobbyCode !== lobbyCode) return;
+
+            switch (msg.type) {
+                case 'JOIN':
+                    if (isLobbyLeader) {
+                        if (!lobbyPlayers.find(p => p.id === msg.player.id)) {
+                            if (lobbyPlayers.length < LOBBY_MAX_PLAYERS) {
+                                lobbyPlayers.push(msg.player);
+                                broadcastLobbyState();
+                                showToast('\uD83D\uDC65 ' + msg.player.name + ' joined!');
+                            } else {
+                                showToast('\u274C Lobby is full (max ' + LOBBY_MAX_PLAYERS + ')');
+                            }
+                        }
+                    }
+                    break;
+                case 'LOBBY_STATE':
+                    if (!isLobbyLeader) { lobbyPlayers = msg.players; updateLobbyUI(); }
+                    break;
+                case 'READY':
+                    const rp = lobbyPlayers.find(p => p.id === msg.playerId);
+                    if (rp) { rp.ready = msg.ready; updateLobbyUI(); }
+                    if (isLobbyLeader) broadcastLobbyState();
+                    break;
+                case 'START':
+                    if (!isLobbyLeader) startMultiplayerGame();
+                    break;
+                case 'SCORE_UPDATE':
+                    const sp = lobbyPlayers.find(p => p.id === msg.playerId);
+                    if (sp) { sp.score = msg.score; updateMpScoreboard(); }
+                    break;
+                case 'GAME_OVER_PLAYER':
+                    const gp = lobbyPlayers.find(p => p.id === msg.playerId);
+                    if (gp) { gp.finalScore = msg.score; gp.finished = true; }
+                    checkAllFinished();
+                    break;
+                case 'SHOW_RESULTS':
+                    if (!isLobbyLeader) { lobbyPlayers = msg.players; showMpResults(); }
+                    break;
+            }
+        }
+
+        function broadcastLobbyState() {
+            if (!mpChannel) return;
+            mpChannel.postMessage({ type: 'LOBBY_STATE', lobbyCode, players: lobbyPlayers });
+            updateLobbyUI();
+        }
+
+        // === CREATE LOBBY ===
+        createLobbyBtn.addEventListener('click', createLobby);
+
+        function createLobby() {
+            lobbyCode    = generateLobbyCode();
+            myPlayerId   = generatePlayerId();
+            isLobbyLeader = true;
+            isReady      = true;
+
+            const myName = getPlayerName(myPlayerId);
+            lobbyPlayers = [{ id: myPlayerId, name: myName, score: 0, ready: true, isLeader: true, finished: false, finalScore: 0 }];
+
+            initChannel(lobbyCode);
+            history.replaceState(null, '', '?lobby=' + lobbyCode);
+
+            inviteLinkInput.value   = getInviteURL(lobbyCode);
+            lobbyCodeText.textContent = lobbyCode;
+            startMpBtn.style.display = 'block';
+            readyBtn.style.display   = 'none';
+
+            showLobbyScreen();
+            updateLobbyUI();
+        }
+
+        // === JOIN LOBBY ===
+        joinCodeBtn.addEventListener('click', () => joinLobby(joinCodeInput.value));
+        joinCodeInput.addEventListener('keydown', e => { if (e.key === 'Enter') joinLobby(joinCodeInput.value); });
+
+        function joinLobby(code) {
+            code = (code || '').toUpperCase().trim();
+            if (!code || code.length !== 6) { showToast('\u274C Enter a valid 6-character lobby code'); return; }
+
+            lobbyCode     = code;
+            myPlayerId    = generatePlayerId();
+            isLobbyLeader = false;
+            isReady       = false;
+
+            const myName = getPlayerName(myPlayerId);
+            const myPlayer = { id: myPlayerId, name: myName, score: 0, ready: false, isLeader: false, finished: false, finalScore: 0 };
+
+            initChannel(code);
+            mpChannel.postMessage({ type: 'JOIN', lobbyCode, player: myPlayer });
+
+            lobbyPlayers = [myPlayer];
+
+            history.replaceState(null, '', '?lobby=' + code);
+            inviteLinkInput.value    = getInviteURL(code);
+            lobbyCodeText.textContent = code;
+            startMpBtn.style.display = 'none';
+            readyBtn.style.display   = 'block';
+            readyBtn.textContent     = 'READY';
+            readyBtn.classList.remove('ready-active');
+            isReady = false;
+
+            showLobbyScreen();
+            updateLobbyUI();
+            showToast('\u2705 Joined lobby ' + code + '!');
+        }
+
+        function showLobbyScreen() {
+            startScreen.style.opacity = 0;
+            setTimeout(() => {
+                startScreen.style.display = 'none';
+                lobbyScreen.style.display = 'flex';
+                setTimeout(() => { lobbyScreen.style.opacity = 1; }, 50);
+            }, 220);
+        }
+
+        function hideLobbyScreen(callback) {
+            lobbyScreen.style.opacity = 0;
+            setTimeout(() => {
+                lobbyScreen.style.display = 'none';
+                if (callback) callback();
+            }, 300);
+        }
+
+        // === LOBBY UI UPDATE ===
+        function updateLobbyUI() {
+            playerSlotsEl.innerHTML = '';
+            for (let i = 0; i < LOBBY_MAX_PLAYERS; i++) {
+                const player = lobbyPlayers[i];
+                const slot = document.createElement('div');
+                slot.className = 'player-slot ' + (player ? 'filled' : 'empty');
+
+                if (player) {
+                    const isMe = player.id === myPlayerId;
+                    slot.innerHTML =
+                        '<div class="player-slot-avatar">' + player.name[0] + '</div>' +
+                        '<div class="player-slot-info">' +
+                        '<span class="player-slot-name">' + player.name +
+                        (isMe ? ' <span style="color:rgba(255,255,255,0.4);font-weight:600;">(You)</span>' : '') +
+                        (player.isLeader ? ' \uD83D\uDC51' : '') + '</span>' +
+                        '<span class="player-slot-status ' + (player.ready ? 'ready' : 'waiting') + '">' +
+                        (player.ready ? '\u2713 READY' : '\u23F3 WAITING') + '</span>' +
+                        '</div>';
+                } else {
+                    slot.innerHTML = '<div class="player-slot-empty-text">Waiting for player...</div>';
+                }
+                playerSlotsEl.appendChild(slot);
+            }
+
+            if (isLobbyLeader) {
+                const count    = lobbyPlayers.length;
+                const allReady = lobbyPlayers.every(p => p.ready);
+                const canStart = count >= LOBBY_MIN_PLAYERS && allReady;
+                startMpBtn.disabled     = !canStart;
+                startMpBtn.style.opacity = canStart ? '1' : '0.5';
+                playerCountLabel.textContent = canStart
+                    ? '(' + count + ' player' + (count > 1 ? 's' : '') + ')'
+                    : '(' + count + '\u2009/\u2009' + LOBBY_MIN_PLAYERS + ' min)';
+            }
+        }
+
+        // === COPY INVITE LINK ===
+        copyLinkBtn.addEventListener('click', () => {
+            const url = inviteLinkInput.value;
+            if (!url) return;
+            // Use Clipboard API when available (https), fallback for file:// / http
+            const doSuccess = () => {
+                showToast('\u2705 Invite link copied!');
+                copyLinkBtn.textContent = '\u2713';
+                setTimeout(() => { copyLinkBtn.textContent = '\uD83D\uDCCB'; }, 2200);
+            };
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(url).then(doSuccess).catch(() => {
+                    if (fallbackCopy()) doSuccess();
+                });
+            } else {
+                if (fallbackCopy()) doSuccess();
+            }
+        });
+
+        function fallbackCopy() {
+            try {
+                inviteLinkInput.select();
+                inviteLinkInput.setSelectionRange(0, 99999);
+                const ok = document.execCommand('copy');
+                return ok;
+            } catch (e) {
+                showToast('Copy the link above manually');
+                return false;
+            }
+        }
+
+        // === SHARE INVITE LINK (native share sheet or clipboard fallback) ===
+        shareLinkBtn.addEventListener('click', async () => {
+            const url = inviteLinkInput.value;
+            if (navigator.share) {
+                try {
+                    await navigator.share({
+                        title: 'Join my Coin Catcher lobby!',
+                        text: 'Use code ' + lobbyCode + ' to join my game!',
+                        url: url
+                    });
+                } catch (e) { /* User cancelled */ }
+            } else {
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    navigator.clipboard.writeText(url).then(() => showToast('\u2705 Invite link copied!'));
+                } else {
+                    fallbackCopy(url);
+                }
+            }
+        });
+
+        // === READY TOGGLE (guests) ===
+        readyBtn.addEventListener('click', () => {
+            isReady = !isReady;
+            const me = lobbyPlayers.find(p => p.id === myPlayerId);
+            if (me) me.ready = isReady;
+            readyBtn.textContent = isReady ? '\u2713 READY' : 'READY';
+            readyBtn.classList.toggle('ready-active', isReady);
+            if (mpChannel) mpChannel.postMessage({ type: 'READY', lobbyCode, playerId: myPlayerId, ready: isReady });
+        });
+
+        // === LEAVE LOBBY ===
+        leaveLobbyBtn.addEventListener('click', leaveLobby);
+
+        function leaveLobby() {
+            if (mpChannel) { try { mpChannel.close(); } catch (e) {} mpChannel = null; }
+            lobbyPlayers  = [];
+            lobbyCode     = null;
+            isLobbyLeader = false;
+            isReady       = false;
+            isMultiplayerMode = false;
+            mpGameActive  = false;
+            history.replaceState(null, '', window.location.pathname);
+
+            hideLobbyScreen(() => {
+                modeTabSolo.classList.add('active');
+                modeTabMulti.classList.remove('active');
+                soloSection.style.display  = 'flex';
+                multiSection.style.display = 'none';
+                startScreen.style.display  = 'flex';
+                setTimeout(() => { startScreen.style.opacity = 1; }, 50);
+            });
+        }
+
+        // === START MULTIPLAYER GAME ===
+        startMpBtn.addEventListener('click', () => {
+            if (startMpBtn.disabled) return;
+            if (mpChannel) mpChannel.postMessage({ type: 'START', lobbyCode });
+            startMultiplayerGame();
+        });
+
+        function startMultiplayerGame() {
+            mpGameActive = true;
+            lobbyPlayers.forEach(p => { p.score = 0; p.finished = false; p.finalScore = 0; });
+            lastBroadcastScore = -1;
+
+            hideLobbyScreen(() => {
+                mpScoreboard.style.display = 'block';
+                updateMpScoreboard();
+                startGame(); // Reuse existing single-player game start
+            });
+        }
+
+        // === MINI SCOREBOARD (visible during gameplay) ===
+        function updateMpScoreboard() {
+            const sorted = [...lobbyPlayers].sort((a, b) => b.score - a.score);
+            mpScoreboardList.innerHTML = sorted.map((p, i) => {
+                const isMe = p.id === myPlayerId;
+                return '<div class="mp-score-row' + (isMe ? ' mp-score-me' : '') + '">' +
+                    '<span class="mp-score-rank">#' + (i + 1) + '</span>' +
+                    '<span class="mp-score-name">' + p.name + '</span>' +
+                    '<span class="mp-score-val">' + p.score + '</span>' +
+                    '</div>';
+            }).join('');
+        }
+
+        // Sync local score to all peers every 400ms
+        function syncMyScore() {
+            if (!mpGameActive || !mpChannel) return;
+            if (score === lastBroadcastScore) return;
+            lastBroadcastScore = score;
+            const me = lobbyPlayers.find(p => p.id === myPlayerId);
+            if (me) me.score = score;
+            mpChannel.postMessage({ type: 'SCORE_UPDATE', lobbyCode, playerId: myPlayerId, score });
+            updateMpScoreboard();
+        }
+
+        setInterval(() => { if (mpGameActive && isGameRunning && !isGameOver) syncMyScore(); }, 400);
+
+        // === MULTIPLAYER GAME OVER ===
+        function triggerMpGameOver() {
+            mpGameActive = false;
+            mpScoreboard.style.display = 'none';
+            const me = lobbyPlayers.find(p => p.id === myPlayerId);
+            if (me) { me.finished = true; me.finalScore = score; me.score = score; }
+            if (mpChannel) mpChannel.postMessage({ type: 'GAME_OVER_PLAYER', lobbyCode, playerId: myPlayerId, score });
+            checkAllFinished();
+        }
+
+        function checkAllFinished() {
+            if (lobbyPlayers.every(p => p.finished)) {
+                // All done — show leaderboard
+                if (isLobbyLeader && mpChannel) {
+                    mpChannel.postMessage({ type: 'SHOW_RESULTS', lobbyCode, players: lobbyPlayers });
+                }
+                showMpResults();
+            } else {
+                // Still waiting for other players — show solo game-over panel with a note
+                const waitNote = document.createElement('p');
+                waitNote.id = 'mpWaitNote';
+                waitNote.style.cssText = 'color:rgba(255,255,255,0.45);font-size:12px;margin:8px 0 0;letter-spacing:1px;';
+                waitNote.textContent = '\u23F3 Waiting for other players...';
+                const existing = document.getElementById('mpWaitNote');
+                if (!existing) {
+                    const goContent = gameOverScreen.querySelector('.overlay-content');
+                    if (goContent) goContent.appendChild(waitNote);
+                }
+                gameOverScreen.style.display = 'flex';
+                setTimeout(() => { gameOverScreen.style.opacity = 1; }, 50);
+            }
+        }
+
+        function showMpResults() {
+            // Clean up any wait note
+            const waitNote = document.getElementById('mpWaitNote');
+            if (waitNote) waitNote.remove();
+
+            mpScoreboard.style.display = 'none';
+            gameOverScreen.style.opacity = 0;
+            gameOverScreen.style.display = 'none';
+
+            const sorted = [...lobbyPlayers].sort((a, b) => b.finalScore - a.finalScore);
+            const medals = ['\uD83E\uDD47', '\uD83E\uDD48', '\uD83E\uDD49'];
+            leaderboardList.innerHTML = sorted.map((p, i) => {
+                const isMe  = p.id === myPlayerId;
+                const medal = medals[i] || ('#' + (i + 1));
+                return '<div class="leaderboard-entry' +
+                    (isMe ? ' leaderboard-me' : '') +
+                    (i === 0 ? ' leaderboard-winner' : '') + '">' +
+                    '<span class="lb-medal">' + medal + '</span>' +
+                    '<span class="lb-name">' + p.name + (isMe ? ' <span style="opacity:0.5;font-size:12px;">(You)</span>' : '') + '</span>' +
+                    '<span class="lb-score">' + p.finalScore + '</span>' +
+                    '</div>';
+            }).join('');
+
+            mpResultsScreen.style.display = 'flex';
+            setTimeout(() => { mpResultsScreen.style.opacity = 1; }, 50);
+        }
+
+        mpPlayAgainBtn.addEventListener('click', () => {
+            mpResultsScreen.style.opacity = 0;
+            setTimeout(() => { mpResultsScreen.style.display = 'none'; }, 300);
+            lobbyPlayers.forEach(p => { p.ready = p.isLeader; p.finished = false; });
+            if (isLobbyLeader) broadcastLobbyState();
+            lobbyScreen.style.display = 'flex';
+            setTimeout(() => { lobbyScreen.style.opacity = 1; }, 50);
+        });
+
+        mpMainMenuBtn2.addEventListener('click', () => {
+            mpResultsScreen.style.opacity = 0;
+            setTimeout(() => { mpResultsScreen.style.display = 'none'; leaveLobby(); }, 300);
+        });
+
+        // ============================================================
+        // IsInstantMultiplayer: Auto-join lobby from URL ?lobby=CODE
+        // Party leaders can share the link; guests join instantly
+        // ============================================================
+        (function checkLobbyURL() {
+            const params     = new URLSearchParams(window.location.search);
+            const lobbyParam = params.get('lobby');
+            if (!lobbyParam || lobbyParam.length !== 6) return;
+
+            // Bypass the intro, go straight to lobby join
+            const intro = document.getElementById('introPage');
+            if (intro) {
+                intro.style.opacity      = '0';
+                intro.style.pointerEvents = 'none';
+                setTimeout(() => { intro.style.display = 'none'; }, 400);
+            }
+
+            // Switch start screen to Multiplayer tab
+            modeTabMulti.classList.add('active');
+            modeTabSolo.classList.remove('active');
+            soloSection.style.display  = 'none';
+            multiSection.style.display = 'flex';
+            isMultiplayerMode = true;
+
+            startScreen.style.display = 'flex';
+            startScreen.style.opacity = '1';
+
+            // Auto-join after layout settles
+            setTimeout(() => joinLobby(lobbyParam), 550);
+        })();
 
     </script>
 </body>
